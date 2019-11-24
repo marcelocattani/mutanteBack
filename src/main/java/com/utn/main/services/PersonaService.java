@@ -347,9 +347,9 @@ public class PersonaService {
 			salida.setCount_mutant_dna(pr.contarPorTipo('T'));
 			
 			try {
-				ratioTemporal = (float) salida.getCount_human_dna() / salida.getCount_mutant_dna();
+				ratioTemporal = (float) salida.getCount_mutant_dna() / salida.getCount_human_dna() ;
 			} catch (ArithmeticException ae) {
-				ratioTemporal = 0;				
+				ratioTemporal = -1;				
 			} catch (Exception e) {
 				System.err.println("Error en personaService.conteo(), resolucion de ratio"+e.getMessage());
 			} finally {
