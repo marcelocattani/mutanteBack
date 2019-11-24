@@ -1,5 +1,13 @@
 package com.utn.main.controllers;
-
+/*
+ * Repositorio de Actualizaciones https://github.com/marcelocattani/mutanteBack.git
+ * Autor CATTANI, Marcelo Omar
+ * Concepto: Trabajo integrador (Global) 2019
+ * UTN- FRM / Tec. Univ. Programacion 
+ * DATE: nov/2019
+ * 
+ * 
+ * */
 import javax.transaction.Transactional;
 
 import org.springframework.http.HttpStatus;
@@ -96,6 +104,12 @@ public class PersonaController {
 			
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\":\"Ha ocurrido un error\"}");		
 		}
+	}
+	
+	@Transactional
+	@GetMapping ("/stats")
+	public ResponseEntity conteo() {
+		return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("{\"message\":\"Metodo No Desarrollado 23-11-2019\"}");
 	}
 	
 }
