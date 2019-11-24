@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.utn.main.dtos.ConsultaDto;
 import com.utn.main.dtos.InfoDto;
 import com.utn.main.dtos.PersonaDto;
 import com.utn.main.entities.Adn;
@@ -173,9 +174,14 @@ public class PersonaService {
 
     /*--------Todo metodos sobre Mutantes------------*/
 	
+	public ConsultaDto consultar(ConsultaDto consulta) throws Exception{
+		
+		consulta.setMutante(isMutant(consulta.getCadena()));
+
+		return consulta;		
+	}
 	
-	
-    public boolean isMutant(String[] adn) throws Exception {
+    private boolean isMutant(String[] adn) throws Exception {
         byte coincidencias = 0;
         if (validarDatos(adn)) {
             byte[][] arreglo = hacerMatriz(adn);

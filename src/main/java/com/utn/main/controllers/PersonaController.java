@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.utn.main.dtos.ConsultaDto;
 import com.utn.main.dtos.PersonaDto;
 import com.utn.main.services.PersonaService;
 
@@ -92,10 +93,10 @@ public class PersonaController {
 	
 	@Transactional
 	@PostMapping ("/mutant/")
-	public ResponseEntity isMutant(@RequestBody PersonaDto persona) {
+	public ResponseEntity isMutant(@RequestBody ConsultaDto persona) {
 		try {
 			
-			return ResponseEntity.status(HttpStatus.OK).body(ps.isMutant(persona.getCadena()));
+			return ResponseEntity.status(HttpStatus.OK).body(ps.consultar(persona));
 			
 		} catch (Exception e) {			
 			if (e.getMessage().equals("AdnFormatInvalid") ) {
