@@ -109,7 +109,11 @@ public class PersonaController {
 	@Transactional
 	@GetMapping ("/stats")
 	public ResponseEntity conteo() {
-		return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body("{\"message\":\"Metodo No Desarrollado 23-11-2019\"}");
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(ps.conteo());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\":\"Ha ocurrido un error\"}");	
+		}
 	}
 	
 }

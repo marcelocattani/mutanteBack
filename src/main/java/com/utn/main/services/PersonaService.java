@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.utn.main.dtos.InfoDto;
 import com.utn.main.dtos.PersonaDto;
 import com.utn.main.entities.Adn;
 import com.utn.main.entities.Persona;
@@ -335,7 +336,33 @@ public class PersonaService {
     }
 
 	
-	
+	//-----------Metodos de Conteo -----------------
+    
+    public InfoDto conteo() {
+    	InfoDto salida = new InfoDto();
+    	float ratioTemporal = 0;
+    	
+    	try {
+			salida.setCount_human_dna(pr.contarPorTipo('F'));
+			salida.setCount_mutant_dna(pr.contarPorTipo('T'));
+			
+			try {
+				ratioTemporal = (float) salida.getCount_human_dna() / salida.getCount_mutant_dna();
+			} catch (ArithmeticException ae) {
+				ratioTemporal = 0;				
+			} catch (Exception e) {
+				System.err.println("Error en personaService.conteo(), resolucion de ratio"+e.getMessage());
+			} finally {
+				salida.setRatio(ratioTemporal);
+			}
+			
+			
+			
+		} catch (Exception e) {
+			System.err.println("Error en personaService.conteo()"+e.getMessage());
+		}
+    	return salida;
+    }
 	
 	
 	
